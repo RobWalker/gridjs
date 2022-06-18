@@ -45,6 +45,25 @@ describe('TR component', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
+  it('should emit rowDblClick', async () => {
+    config.eventEmitter = new EventEmitter<TableEvents>();
+    const onDblClick = jest.fn();
+
+    const rows = mount(
+      <configContext.Provider value={config}>
+        <TR>
+          <TD cell={new Cell('boo')} />
+        </TR>
+      </configContext.Provider>,
+    ).find('tr');
+
+    config.eventEmitter.on('rowDblClick', onDblClick);
+    rows.map((tr) => tr.simulate('dblclick'));
+
+    expect(rows.length).toEqual(1);
+    expect(onDblClick).toHaveBeenCalledTimes(1);
+  });
+  
   it('should attach the custom tr className', async () => {
     const tr = mount(
       <configContext.Provider

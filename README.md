@@ -72,3 +72,5 @@ on Grid.js website [grid.js/docs](https://gridjs.io/docs/index).
 ## License
 
 [MIT](https://github.com/grid-js/gridjs/blob/master/LICENSE)
+
+##

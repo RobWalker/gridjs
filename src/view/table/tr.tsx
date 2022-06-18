@@ -29,8 +29,21 @@ export class TR extends BaseComponent<TRProps> {
 
   private handleClick(e: JSX.TargetedMouseEvent<HTMLTableRowElement>): void {
     if (this.props.messageRow) return;
-    this.config.eventEmitter.emit('rowClick', e, this.props.row);
+
+    if (e.detail === 2) {
+      this.config.eventEmitter.emit('rowDblClick', e, this.props.row);
+    }
+    else {
+      this.config.eventEmitter.emit('rowClick', e, this.props.row);
+    }
   }
+
+  /*
+  private handleDoubleClick(e: JSX.TargetedMouseEvent<HTMLTableRowElement>): void {
+    if (this.props.messageRow) return;
+    this.config.eventEmitter.emit('rowDblClick', e, this.props.row);
+  }
+  */
 
   private getChildren(): ComponentChildren {
     if (this.props.children) {
